@@ -1,0 +1,9 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "python -m uvicorn main:app --host 0.0.0.0 --port $PORT --workers 1 --loop uvloop --http httptools --ws websockets --limit-concurrency 500 --backlog 256 --timeout-keep-alive 30 --log-level warning --no-access-log"
+healthcheckPath = "/"
+healthcheckTimeout = 30
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 5
