@@ -1417,20 +1417,3 @@ async def catch_all(request: Request, path: str):
     
     record_failed_attempt(client_ip)
     raise HTTPException(status_code=404, detail="Halaman tidak ditemukan")
-
-
-if __name__ == "__main__":
-    import uvicorn
-    port = int(os.environ.get("PORT", 8000))
-    uvicorn.run(
-        app,
-        host="0.0.0.0",
-        port=port,
-        log_level="warning",
-        access_log=False,
-        ws_ping_interval=20,
-        ws_ping_timeout=20,
-        limit_concurrency=500,
-        backlog=256,
-        timeout_keep_alive=30,
-    )
