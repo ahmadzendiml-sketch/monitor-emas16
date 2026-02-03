@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["python311", "gcc", "libxml2", "libxslt"]
+
+[phases.install]
+cmds = ["pip install --upgrade pip", "pip install --no-cache-dir -r requirements.txt"]
+
+[start]
+cmd = "python -m uvicorn main:app --host 0.0.0.0 --port $PORT --workers 1 --loop uvloop --http httptools --ws websockets --limit-concurrency 500 --backlog 256 --timeout-keep-alive 30 --log-level warning --no-access-log"
